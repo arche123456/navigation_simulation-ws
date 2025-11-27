@@ -1,41 +1,32 @@
-# Prerequisites
-*.d
+# 忽略所有文件和目录
+*
 
-# Compiled Object files
-*.slo
-*.lo
+# 但不忽略以下内容：
+!.gitignore
+!README.md
+!LICENSE
+!src/
+!src/**/*
+
+# ROS2 特定忽略（额外的保护层）
+build/
+install/
+log/
+*.pyc
+__pycache__/
+
+# 编译产物
 *.o
-*.obj
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Linker files
-*.ilk
-
-# Debugger Files
-*.pdb
-
-# Compiled Dynamic libraries
 *.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
 *.a
-*.lib
+*.la
 
-# Executables
-*.exe
-*.out
-*.app
+# 编辑器文件
+.vscode/
+.idea/
+*.swp
+*.swo
 
-# debug information files
-*.dwo
+# 系统文件
+.DS_Store
+Thumbs.db
