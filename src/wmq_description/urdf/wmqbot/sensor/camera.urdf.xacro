@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:include filename="$(find wmq_description)/urdf/wmqbot/common_inertia.xacro" />
     <xacro:macro name="camera_xacro" params="xyz">
         <!-- 机器人的相机部件，惯性测量传感器 -->
         <link name="camera_link">
@@ -12,6 +13,17 @@
                     <color rgba="1.0 1.0 1.0 0.5"/>
                 </material>
             </visual>
+            <collision>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <box size="0.02 0.10 0.02"/>
+                </geometry>
+                <material name="black">
+                    <color rgba="1.0 1.0 1.0 0.5"/>
+                </material>
+            </collision>
+            <!-- 加入重心和偏移 -->
+            <xacro:box_inertia m="0.1" w="0.02" h="0.10" d="0.02" />        
         </link>
 
         <!-- 机器人的关节，用于组合机器人的部件 -->

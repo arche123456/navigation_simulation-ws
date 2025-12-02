@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:include filename="$(find wmq_description)/urdf/wmqbot/common_inertia.xacro" />
     <xacro:macro name="caster_xacro" params="caster_name xyz">
         <!-- 机器人的身体部分 -->
         <link name="${caster_name}_link">
@@ -14,6 +15,16 @@
                     <color rgba="1.0 1.0 0.0 0.8"/>
                 </material>
             </visual>
+            <collision>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <sphere radius="0.016"/>
+                </geometry>
+                <!-- 材料颜色 -->
+                <material name="yellow">
+                    <color rgba="1.0 1.0 0.0 0.8"/>
+                </material>
+            </collision>
         </link>
         
         <!-- 机器人的关节，用于组合机器人的部件 -->
@@ -22,7 +33,7 @@
             <child link="${caster_name}_link"/>
             <origin xyz="${xyz}" rpy="0.0 0.0 0.0"/>
         </joint>
-            
+        <xacro:sphere_inertia m="0.05" r="0.016" />
     </xacro:macro>
 
 </robot>
