@@ -12,7 +12,7 @@ import os
 def generate_launch_description():
     #获取功能包的share路径
     urdf_package_path = get_package_share_directory('wmq_description')
-    default_xacro_path = os.path.join(urdf_package_path, 'urdf', 'first_robot.urdf')
+    default_xacro_path = os.path.join(urdf_package_path, 'urdf', 'wmqbot', 'wmqbot.urdf.xacro')
     # default_rviz_config_path = os.path.join(urdf_package_path, 'config', 'display_robot_model.rviz')
     default_gazebo_world_path = os.path.join(urdf_package_path, 'world', 'custom_room.world')
     #声明一个urdf目录的参数，方便修改

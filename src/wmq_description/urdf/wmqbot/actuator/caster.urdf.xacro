@@ -25,6 +25,7 @@
                     <color rgba="1.0 1.0 0.0 0.8"/>
                 </material>
             </collision>
+        <xacro:sphere_inertia m="0.05" r="0.016" />            
         </link>
         
         <!-- 机器人的关节，用于组合机器人的部件 -->
@@ -33,7 +34,17 @@
             <child link="${caster_name}_link"/>
             <origin xyz="${xyz}" rpy="0.0 0.0 0.0"/>
         </joint>
-        <xacro:sphere_inertia m="0.05" r="0.016" />
+
+        <gazebo reference="${caster_name}_link">
+            <!-- 切向摩擦系数 -->
+            <mu1 value="0.0"/>
+            <!-- 法向摩擦系数 -->
+            <mu2 value="0.0"/>
+            <!-- 刚度系数 -->
+            <kp value="1000000000.0"/>
+            <!-- 阻尼系数 -->
+            <kd value="1.0"/>
+        </gazebo>
     </xacro:macro>
 
 </robot>
