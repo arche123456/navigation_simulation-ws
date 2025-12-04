@@ -10,7 +10,7 @@
 <xacro:include filename="$(find wmq_description)/urdf/wmqbot/actuator/wheel.urdf.xacro"/>
 <xacro:include filename="$(find wmq_description)/urdf/wmqbot/actuator/caster.urdf.xacro"/>
 <!-- 插件 -->
-<!-- <xacro:include filename="$(find wmq_description)/urdf/wmqbot/plugins/gazebo_control_plugin.xacro"/> -->
+<xacro:include filename="$(find wmq_description)/urdf/wmqbot/plugins/gazebo_control_plugin.xacro"/>
 <xacro:include filename="$(find wmq_description)/urdf/wmqbot/plugins/gazebo_sensor_plugin.xacro"/>
 <xacro:include filename="$(find wmq_description)/urdf/wmqbot/wmqbot.ros2_control.xacro"/>
 

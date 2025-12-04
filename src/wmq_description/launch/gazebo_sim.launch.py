@@ -2,11 +2,11 @@ import launch
 import launch_ros
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument
-from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
+from launch.actions import DeclareLaunchArgument, ExecuteProcess, RegisterEventHandler
+from launch.event_handlers import OnProcessExit
+from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
 from launch_ros.parameter_descriptions import ParameterValue
-import xacro
 import os
 
 def generate_launch_description():
@@ -62,9 +62,36 @@ def generate_launch_description():
         arguments=['-topic', '/robot_description', '-entity', 'fishbot']
     )
 
+    action_load_joint_state_controller = launch.actions.ExecuteProcess(
+        cmd=['ros2', 'control', 'load_controller', 'fishbot_joint_state_broadcaster', '--set-state', 'start'],
+        output='screen'
+    )
+    # 选择加载两轮差速控制器
+    action_load_effort_controller = launch.actions.ExecuteProcess(
+        cmd=['ros2', 'control', 'load_controller', 'fishbot_effort_controller', '--set-state', 'start'],
+        output='screen'
+    )
+
+    action_load_diff_driver_controller = launch.actions.ExecuteProcess(
+        cmd=['ros2', 'control', 'load_controller', 'fishbot_diff_drive_controller', '--set-state', 'start'],
+        output='screen'
+    )
+
     return launch.LaunchDescription([
         action_declare_arg_mode_path,
         action_robot_state_publisher,
         action_launch_gazebo,
-        action_spawn_entity
+        action_spawn_entity,
+        launch.actions.RegisterEventHandler(
+            event_handler=launch.event_handlers.OnProcessExit(
+                target_action=action_spawn_entity,
+                on_exit=[action_load_joint_state_controller]
+            )
+        ),
+        launch.actions.RegisterEventHandler(
+            event_handler=launch.event_handlers.OnProcessExit(
+                target_action=action_load_joint_state_controller,
+                on_exit=[action_load_diff_driver_controller]
+            )
+        ),
     ])

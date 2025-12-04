@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
     <xacro:macro name="wmqbot_ros2_control">
-    <ros2_control name="FishBotGazeboSystem" type="system">
+        <ros2_control name="FishBotGazeboSystem" type="system">
             <hardware>
                 <plugin>gazebo_ros2_control/GazeboSystem</plugin>
             </hardware>
@@ -33,13 +33,14 @@
             </joint>
         </ros2_control>
         <gazebo>
-        <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
-            <parameters>$(find wmq_description)/config/fishbot_ros2_controller.yaml</parameters>
-            <ros>
-                <remapping>/fishbot_diff_drive_controller/cmd_vel_unstamped:=/cmd_vel</remapping>
-                <remapping>/fishbot_diff_drive_controller/odom:=/odom</remapping>
-            </ros>
-        </plugin>
-</gazebo>
+            <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
+                <parameters>$(find wmq_description)/config/fishbot_ros2_controller.yaml</parameters>
+                <controller_manager_name>controller_manager</controller_manager_name>
+                <ros>
+                    <!-- <remapping>/fishbot_diff_drive_controller/odom:=/odom</remapping> -->
+                    <remapping>/fishbot_diff_drive_controller/cmd_vel_unstamped:=/cmd_vel</remapping>
+                </ros>
+            </plugin>
+        </gazebo>
     </xacro:macro>
 </robot>
