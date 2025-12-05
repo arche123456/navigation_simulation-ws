@@ -1,0 +1,9 @@
+image: 7v7map.pgm
+mode: trinary
+# 每个像素对应5cm
+resolution: 0.05
+origin: [-10, -10, 0]
+negate: 0
+occupied_thresh: 0.65
+free_thresh: 0.25
+
