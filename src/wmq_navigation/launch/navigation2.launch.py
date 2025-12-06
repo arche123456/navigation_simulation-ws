@@ -16,7 +16,7 @@ def generate_launch_description():
     use_sim_time = launch.substitutions.LaunchConfiguration(
         'use_sim_time', default='true')
     map_yaml_path = launch.substitutions.LaunchConfiguration(
-        'map', default=os.path.join(wmq_navigation_dir, 'maps', 'room.yaml'))
+        'map', default=os.path.join(wmq_navigation_dir, 'maps', 'new_room.yaml'))
     nav2_param_path = launch.substitutions.LaunchConfiguration(
         'params_file', default=os.path.join(wmq_navigation_dir, 'config', 'nav2_params.yaml'))
 

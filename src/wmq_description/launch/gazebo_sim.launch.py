@@ -14,7 +14,7 @@ def generate_launch_description():
     urdf_package_path = get_package_share_directory('wmq_description')
     default_xacro_path = os.path.join(urdf_package_path, 'urdf', 'wmqbot', 'wmqbot.urdf.xacro')
     # default_rviz_config_path = os.path.join(urdf_package_path, 'config', 'display_robot_model.rviz')
-    default_gazebo_world_path = os.path.join(urdf_package_path, 'world', 'custom_room.world')
+    default_gazebo_world_path = os.path.join(urdf_package_path, 'world', 'new_house.world')
     #声明一个urdf目录的参数，方便修改
     action_declare_arg_mode_path = launch.actions.DeclareLaunchArgument(
         name='model', default_value=str(default_xacro_path), description='加载的模型文件路径'
